@@ -1,22 +1,17 @@
 import tkinter as tk
 import math
 
-# -----------------------------
-# Fungsi untuk perhitungan
-# -----------------------------
 def click(event):
     text = event.widget.cget("text")
 
     if text == "=":
         try:
             expression = screen.get()
-            # Ganti simbol agar bisa dieksekusi Python
             expression = expression.replace("^", "**")
             expression = expression.replace("√", "math.sqrt")
             expression = expression.replace("π", "math.pi")
             expression = expression.replace("e", "math.e")
 
-            # Perhitungan ilmiah
             result = eval(expression)
             screen.set(round(result, 10))
         except Exception:
@@ -70,9 +65,6 @@ def click(event):
     else:
         screen.set(screen.get() + text)
 
-# -----------------------------
-# Tampilan GUI
-# -----------------------------
 root = tk.Tk()
 root.title("Kalkulator Ilmiah Python")
 root.geometry("420x650")
@@ -88,13 +80,9 @@ entry = tk.Entry(
 )
 entry.pack(fill=tk.X, ipadx=8, pady=20, padx=10)
 
-# Mode tampilan di atas
 mode_label = tk.Label(root, textvariable=mode, bg="#1e1e1e", fg="#00ffae", font=("Consolas", 12))
 mode_label.pack(anchor="e", padx=20)
 
-# -----------------------------
-# Tombol kalkulator
-# -----------------------------
 button_texts = [
     ["C", "⌫", "(", ")", "/"],
     ["7", "8", "9", "*", "%"],
@@ -119,7 +107,5 @@ for row in button_texts:
         b.pack(side=tk.LEFT, expand=True, fill="both")
         b.bind("<Button-1>", click)
 
-# -----------------------------
-# Jalankan aplikasi
-# -----------------------------
 root.mainloop()
+
